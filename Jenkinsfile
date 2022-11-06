@@ -2,28 +2,28 @@ pipeline {
   agent any
   stages {
     stage('log tool version') {
-      parallel {
-        stage('log tool version') {
-          steps {
-            sh '''git --version
+      steps {
+        sh '''git --version
 java -version
 
 '''
-          }
-        }
+      }
+    }
 
-        stage('check file') {
+    stage('Testing') {
+      parallel {
+        stage('Testing') {
           steps {
             fileExists 'pom.xml'
           }
         }
 
-      }
-    }
+        stage('Test 2') {
+          steps {
+            readFile 'pom.xlm'
+          }
+        }
 
-    stage('post build steps') {
-      steps {
-        writeFile(file: 'status.txt', text: 'hey it worked')
       }
     }
 
